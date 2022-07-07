@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.classmate.GenericType;
 
@@ -26,6 +27,17 @@ public class Medico {
     private String CRM;
     @ManyToMany(cascade = { CascadeType.MERGE, CascadeType.REFRESH })
     private List<Procedimento> listaProcedimentosdoMedico = new ArrayList();
+    
+    @ManyToMany(cascade = { CascadeType.REFRESH, CascadeType.MERGE })
+    private List<Procedimento> listaProcedimentos = new ArrayList<>();
+
+    public List<Procedimento> getListaProcedimentos() {
+        return listaProcedimentos;
+    }
+
+    public void setListaProcedimentos(List<Procedimento> listaProcedimentos) {
+        this.listaProcedimentos = listaProcedimentos;
+    }
 
     public String getCRM() {
         return CRM;

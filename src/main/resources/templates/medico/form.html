@@ -16,10 +16,10 @@
                 <div class="form-group">
                     <div class="row">
                         <div class="col-6">
-                            <label for="txtnome">Nome:</label>
+                            <label for="txtprocedimento">procedimento:</label>
                             <input class="form-control" 
-                                th:field="*{nome}" 
-                                type="text" id="txtnome">
+                                th:field="*{procedimento}" 
+                                type="text" id="txtprocedimento">
                         </div>
                     </div>
                     <div class="row">
@@ -30,8 +30,40 @@
                                 type="text" id="txtcrm">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label>Procedimento:</label>
+                        <select th:field="*{procedimentoId}"
+                            class="form-select">
+                            <option
+                                th:each="umProcedimento : ${listaProcedimento}"
+                                th:value="${umProcedimento.id}"
+                                th:text="${umProcedimento.procedimento}"></option>
+
+                        </select>
+                        <button type="submit" name="incplano" class="btn btn-primary">Incluir Procedimento:</button>
+                    </div>
+                    <div class="form-group">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>procedimento</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="umProcedimento, stat : *{listaProcedimento}">
+                                    <td th:text="${umPlano.procedimento}"></td>
+                                    <input type="hidden" th:field="*{listaProcedimento[__${stat.index}__].id}"/>
+                                    <input type="hidden" th:field="*{listaProcedimento[__${stat.index}__].procedimento}"/>
+                                    <td>
+                                        <button type="submit" name="removeitem" th:value="__${stat.index}__" class="btn btn-primary">Remover</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                <button type="submit" procedimento='save' class="btn btn-primary">Enviar</button>
             </form>
         </div>
         

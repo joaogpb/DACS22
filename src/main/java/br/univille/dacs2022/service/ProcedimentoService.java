@@ -7,11 +7,11 @@ import br.univille.dacs2022.dto.ProcedimentoDTO;
 public interface ProcedimentoService {
     public List<ProcedimentoDTO> getAll();
 
-    public ProcedimentoDTO save(ProcedimentoDTO procedimento);
+    public ProcedimentoDTO save(ProcedimentoDTO paciente);
 
-    public ProcedimentoDTO findById(Long id);
+    public ProcedimentoDTO findById(long id);
 
-    public ProcedimentoDTO delete(Long id);
+    public ProcedimentoDTO delete(long id);
 
-    public ProcedimentoDTO getById(Long id);
+    public ProcedimentoDTO getById(long id);
 }

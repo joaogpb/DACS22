@@ -3,46 +3,44 @@ package br.univille.dacs2022.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-
-
 
 public class MedicoDTO {
-    private Long Id;
-    @NotBlank(message = "O campo nome não pode ser deixado em branco")
-    @NotNull
+    private long id;
+    @NotBlank(message = "É necessário preencher o campo nome")
+    @Column(length = 500)
     private String nome;
-
-    private String CRM;
-
+    @Min(value = 1, message = "Deve ser maior que 1")
+    @Max(value = 9999, message = "Deve ser menor que 9999")
+    private int CRM;
     private List<ProcedimentoDTO> listaProcedimentos = new ArrayList<>();
     private long procedimentoId;
 
     public long getProcedimentoId() {
         return procedimentoId;
     }
+
     public void setProcedimentoId(long procedimentoId) {
         this.procedimentoId = procedimentoId;
     }
-    public List<ProcedimentoDTO> getListaProcedimentos() {
-        return listaProcedimentos;
-    }
-    public void setListaprocedimentos(List<ProcedimentoDTO> listaProcedimentos) {
-        this.listaProcedimentos = listaProcedimentos;
-    }
-    
 
-    public String getCRM() {
+    public int getCRM() {
         return CRM;
     }
 
-    public Long getId() {
-        return Id;
+    public void setCRM(int cRM) {
+        CRM = cRM;
     }
 
-    public void setId(Long id) {
-        this.Id = id;
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -53,8 +51,12 @@ public class MedicoDTO {
         this.nome = nome;
     }
 
-    public void setCRM(String cRM) {
-        this.CRM = cRM;
+    public List<ProcedimentoDTO> getListaProcedimentos() {
+        return listaProcedimentos;
     }
-}
 
+    public void setListaProcedimentos(List<ProcedimentoDTO> listaProcedimentos) {
+        this.listaProcedimentos = listaProcedimentos;
+    }
+
+}

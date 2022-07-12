@@ -1,22 +1,30 @@
 package br.univille.dacs2022.dto;
 
-public class ProcedimentoDTO {
-    private Long Id;
-    private String Descricao;
+import javax.persistence.Column;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
-    public Long getId() {
-        return Id;
+public class ProcedimentoDTO {
+    private long id;
+    @NotBlank(message = "É necessário inser um procedimento")
+    @NotNull
+    @Column(length = 1000)
+    private String descricao;
+
+    public long getId() {
+        return id;
     }
 
-    public void setId(Long id) {
-        Id = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getDescricao() {
-        return Descricao;
+        return descricao;
     }
 
     public void setDescricao(String descricao) {
-        Descricao = descricao;
+        this.descricao = descricao;
     }
+
 }

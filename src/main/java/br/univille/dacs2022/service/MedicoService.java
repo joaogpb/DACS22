@@ -7,10 +7,9 @@ import br.univille.dacs2022.dto.MedicoDTO;
 public interface MedicoService {
     public List<MedicoDTO> getAll();
 
-    public MedicoDTO save(MedicoDTO medico);
-
-    public MedicoDTO findById(Long id);
-
-    public MedicoDTO delete(Long id);
-
+    public MedicoDTO save(MedicoDTO paciente);
+    
+    public MedicoDTO findById(long id);
+    
+    public MedicoDTO delete(long id);
 }

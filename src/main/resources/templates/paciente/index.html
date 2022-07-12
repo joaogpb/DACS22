@@ -10,9 +10,6 @@
         <div class="container">
             <h1 class="text-center">Paciente</h1>
             
-            <div class="botao-direita">
-                <a th:href="@{/paciente/novo}" class="btn btn-primary">Novo</a>
-            </div>
             <table class="table" id="pacientes">
                 <thead>
                     <tr>
@@ -39,7 +36,9 @@
                     </tr>
                 </tbody>
             </table>
-            
+            <div class="botao-direita">
+                <a th:href="@{/paciente/novo}" class="btn btn-primary">Adicionar</a>
+            </div>
         </div>
         
         <div th:include="layout :: footer">(footer)</div>

@@ -13,47 +13,49 @@ import br.univille.dacs2022.mapper.MedicoMapper;
 import br.univille.dacs2022.repository.MedicoRepository;
 import br.univille.dacs2022.service.MedicoService;
 
-@Service
-public class MedicoServiceImpl implements MedicoService {
 
+@Service
+public class MedicoServiceImpl implements MedicoService{
     @Autowired
     private MedicoRepository repository;
+
     private MedicoMapper mapper = Mappers.getMapper(MedicoMapper.class);
 
     @Override
     public List<MedicoDTO> getAll() {
         return mapper.mapListMedico(repository.findAll());
-        // return null;
     }
 
     @Override
     public MedicoDTO save(MedicoDTO medico) {
         Medico medicoEntity = mapper.mapMedicoDTO(medico);
         medicoEntity = repository.save(medicoEntity);
+
         return mapper.mapMedico(medicoEntity);
-        // return null;
     }
 
     @Override
-    public MedicoDTO findById(Long id) {
+    public MedicoDTO findById(long id) {
         Optional<Medico> medicoEntity = repository.findById(id);
 
         if (medicoEntity.isPresent()) {
             return mapper.mapMedico(medicoEntity.get());
         }
+
         return new MedicoDTO();
     }
 
     @Override
-    public MedicoDTO delete(Long id) {
+    public MedicoDTO delete(long id) {
         Optional<Medico> medicoEntity = repository.findById(id);
 
         if (medicoEntity.isPresent()) {
-            Medico medico = medicoEntity.get();
-            repository.delete(medico);
+            Medico medico = medicoEntity.get(); 
+            repository.delete(medico);;
+
             return mapper.mapMedico(medico);
         }
-        return null;
+        return null;        
     }
 
 }
